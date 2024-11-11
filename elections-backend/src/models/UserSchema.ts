@@ -4,8 +4,8 @@ interface IUser extends Document {
     username: string;
     password: string;
     isAdmin: boolean;
-    hasVoted: boolean;
-    votedFor: mongoose.Types.ObjectId | null;
+    hasVoted?: boolean;
+    votedFor?: mongoose.Types.ObjectId | null;
   }
 
 const userSchema: Schema<IUser> = new Schema(
