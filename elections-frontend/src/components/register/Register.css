@@ -1,0 +1,62 @@
+.Register {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.Register h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.Register input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.Register input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Register input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.Register .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.Register p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.Register p button {
+    background: none;
+    border: none;
+    color: #4CAF50;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.Register p button:hover {
+    color: #45a049;
+}

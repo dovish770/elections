@@ -1,7 +1,7 @@
 import {FetchCandidatesResponse} from '../../types/serverTypes/FetchCandidatesType'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const BASE_URL = process.env.REACT_APP_ELECTION_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchCandidates = createAsyncThunk<FetchCandidatesResponse, { rejectValue: string }>('user/login', async (_, { rejectWithValue }) => {
     try {

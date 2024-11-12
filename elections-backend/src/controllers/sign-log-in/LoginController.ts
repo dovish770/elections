@@ -1,13 +1,21 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import UserModel from '../../models/UserSchema'
+import jwt from 'jsonwebtoken';
+import UserModel from '../../models/UserSchema';
 
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET is not defined in the environment variables');
+  }
+
+  
 export const login = async (req: Request, res: Response) => {
   
     const {username, password} = req.body;
 
     if(!username || !password){
-        res.status(400).json({message: "Passport ID and password are required."});
+        res.status(400).json({message: "username and password are required."});
+        return
     }
 
     try{
@@ -23,7 +31,9 @@ export const login = async (req: Request, res: Response) => {
                 return
             }
             else{
-                res.status(200).json({message: "Logged successful"});
+
+                const token = jwt.sign({ userId: user._id, username: user.username, isAdmin: user.isAdmin }, JWT_SECRET, { expiresIn: '1h' } );
+                res.status(200).json({message: "Logged in successfully", token});
                 return
             }
         }
@@ -38,7 +48,7 @@ export const getUsers = async (req: Request, res: Response) => {
     try {
         const allUsers = await UserModel.find(); 
         res.status(200).json({ success: true, data: allUsers });
-    } catch (error) {
-        res.status(400).json({ success: false, message: "Can't get users" });
+    } catch (error: any) {
+        res.status(400).json({ success: false, error: error.message });
     }
 };
